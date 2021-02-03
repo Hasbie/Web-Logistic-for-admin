@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login Admin | Kilat Xpress</title>
+	<title>Login Agen | Kilat Xpress</title>
 	<link rel="icon" href=".core/.assets/img/favicon.png">
 	
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -35,12 +35,12 @@
 		<div class="form_login">
 			<span class="satu">
 				<h3>
-					Admin Kilat Xpress
+					Agen Kilat Xpress
 				</h3>
 				<p>   					
-					Selamat Datang Admin Kilat Xpress!
+					Selamat Datang Agen Kilat Xpress!
 					<br>
-					Pastikan Anda mendapatkan update informasi terbaru Admin kilat melalui website resmi kami.
+					Pastikan Anda mendapatkan update informasi terbaru agen kilat melalui website resmi kami.
 				</p>
 				<a href="kurir" class="btn btn_register" style="display:none;">
 					Login Kurir Kilat Xpress
@@ -48,18 +48,18 @@
 			</span>
 			<span class="dua">
 				<h3>
-					Login Admin
+					Login Agen
 				</h3>
 				<form class="form_login_register" method="post" action="" role="form">
 					<div class="input-group">
 						<span class="input-group-addon username"><i class="fa fa-user-circle"></i></span>
-						<input type="text" class="form-control username" placeholder="Username" name="username" required>
+						<input type="text" class="form-control username" placeholder="Username" name="username" required style="text-transform:uppercase;">
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon password"><i class="fa fa-lock" style="margin:0px 2.5px;"></i></span>
 						<input type="password" class="form-control password" placeholder="Password" name="password" required>
 					</div>
-					<button type="submit" class="btn btn_login">Login Admin</button>
+					<button type="submit" class="btn btn_login">Login Agen</button>
 				</form>
 			</span>
 			<span class="tiga">
@@ -87,7 +87,7 @@
 				//Silent
 			}else{
 				include "config.php";
-				$sqlLogin = mysqli_query($koneksi, "SELECT * FROM admin WHERE username='$user' AND password='$pass'");
+				$sqlLogin = mysqli_query($koneksi, "SELECT * FROM user_manager WHERE username='$user' AND password='$pass' AND tipe_akun='Akun Agen'");
 				$jml=mysqli_num_rows($sqlLogin);
 				$d=mysqli_fetch_array($sqlLogin);
 				if($jml > 0){
@@ -95,7 +95,7 @@
 					$_SESSION['login']		= TRUE;
 					$_SESSION['id']			= $d['id'];
 					$_SESSION['username']	= $d['username'];
-					$_SESSION['tipe_user']	= $d['tipe_user'];
+					$_SESSION['tipe_akun']	= $d['tipe_akun'];
 					
 					header('Location: data?value=dashboard');
 				}else{
@@ -127,6 +127,26 @@
 			}
 		}
 	?>
+	<style>
+		input { 
+				text-transform: uppercase;
+			}
+			::-webkit-input-placeholder { /* WebKit browsers */
+				text-transform: none;
+			}
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+				text-transform: none;
+			}
+			::-moz-placeholder { /* Mozilla Firefox 19+ */
+				text-transform: none;
+			}
+			:-ms-input-placeholder { /* Internet Explorer 10+ */
+				text-transform: none;
+			}
+			::placeholder { /* Recent browsers */
+				text-transform: none;
+			}
+	</style>
 	<script>
 	window.setTimeout(function() {
 		$(".alert").fadeTo(500, 0).slideUp(500, function(){
